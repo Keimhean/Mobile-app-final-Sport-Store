@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.SportsStore">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OnboardingActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".ProductDetailActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".CheckoutActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

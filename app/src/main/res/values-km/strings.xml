@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ហាងលក់គ្រឿងកីឡា</string>
+    <string name="hello_world">សួស្តី ពិភពលោក!</string>
+    <!-- General -->
+    <string name="action_search">ស្វែងរកផលិតផល</string>
+    <string name="action_cart">រទេះ</string>
+    <string name="action_profile">ប្រវត្តិរូប</string>
+    <string name="home">ទំព័រដើម</string>
+    <string name="search">ស្វែងរក</string>
+    <string name="cart">រទេះ</string>
+    <string name="profile">ប្រវត្តិរូប</string>
+
+    <!-- Splash / Auth -->
+    <string name="splash_title">ហាងលក់គ្រឿងកីឡា</string>
+    <string name="welcome_back">សូមស្វាគមន៍ការត្រឡប់មកវិញ</string>
+    <string name="sign_in_subtitle">ចូលដើម្បីបន្តទិញទំនិញ</string>
+    <string name="email_hint">អ៊ីមែល</string>
+    <string name="password_hint">ពាក្យសម្ងាត់</string>
+    <string name="sign_in">ចូល</string>
+    <string name="continue_guest">បន្តជាភ្ញៀវ</string>
+    <string name="forgot_password">ភ្លេចពាក្យសម្ងាត់?</string>
+    <string name="or_continue_with">ឬបន្តជាមួយ</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="no_account">មិនទាន់មានគណនី?</string>
+    <string name="sign_up">ចុះឈ្មោះ</string>
+
+    <!-- Home -->
+    <string name="featured">លេចធ្លោ</string>
+    <string name="categories">ប្រភេទ</string>
+
+    <!-- Product -->
+    <string name="product_name">ស្បែកជើងរត់</string>
+    <string name="product_price">$99.99</string>
+    <string name="add_to_cart">បន្ថែមទៅរទេះ</string>
+    <string name="badge_sale">លក់បញ្ចុះតម្លៃ</string>
+    <string name="badge_new">ថ្មី</string>
+
+    <!-- Cart / Checkout -->
+    <string name="cart_title">រទេះរបស់អ្នក</string>
+    <string name="no_items">មិនទាន់មានទំនិញនៅឡើយ</string>
+    <string name="checkout">ទូទាត់ប្រាក់</string>
+    <string name="confirm_order">បញ្ជាក់ការបញ្ជាទិញ</string>
+
+    <!-- Profile -->
+    <string name="profile_title">ប្រវត្តិរូប</string>
+    <string name="user_info">ចន ដូ\njohndoe@example.com</string>
+</resources>

@@ -1,0 +1,32 @@
+### Android ###
+.gradle/
+/local.properties
+/build/
+/captures/
+/app/build/
+
+# Don't ignore the Gradle wrapper files
+!/gradle/wrapper/gradle-wrapper.jar
+
+# Kotlin/IntelliJ
+.idea/
+.gradle/
+*.iml
+
+# Build output
+/build/
+**/build/
+
+# Android Studio
+.idea/
+.idea/*
+*.ipr
+*.iws
+
+# Misc
+*.log
+*.keystore
+*.jks
+
+# Mac
+.DS_Store

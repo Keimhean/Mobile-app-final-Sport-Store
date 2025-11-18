@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="32dp"
+    app:cardElevation="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:gravity="center">
+
+        <!-- Icon -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="60dp"
+            app:cardElevation="4dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_onboarding_icon">
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_cart"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="@string/app_name" />
+
+            </FrameLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shop Sports Gear Easily"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#1F2937"
+            android:layout_marginTop="32dp"
+            android:gravity="center" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Browse thousands of premium\nsports products from top brands"
+            android:textSize="15sp"
+            android:textColor="#6B7280"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Page Indicator -->
+        <LinearLayout
+            android:id="@+id/indicator_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            android:gravity="center">
+
+            <View
+                android:id="@+id/indicator_0"
+                android:layout_width="32dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_indicator_active"
+                android:layout_marginEnd="8dp" />
+
+            <View
+                android:id="@+id/indicator_1"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_indicator_inactive"
+                android:layout_marginEnd="8dp" />
+
+            <View
+                android:id="@+id/indicator_2"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/bg_indicator_inactive" />
+
+        </LinearLayout>
+
+        <!-- Next Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_action"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Next"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            app:icon="@drawable/ic_arrow_forward"
+            app:iconGravity="end"
+            app:iconTint="#FFFFFF"
+            android:layout_marginTop="40dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#1E3A8A"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
