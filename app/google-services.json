@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "411738770294",
+    "project_id": "finalproject-kotlin-a735b",
+    "storage_bucket": "finalproject-kotlin-a735b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411738770294:android:cda52d6d3a08fb88af8857",
+        "android_client_info": {
+          "package_name": "com.keimhean.sportsotore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFFhiHDeqqxRgrewB2U_yUKPG939Avlew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,14 +1,15 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.myapp"
+    namespace = "com.keimhean.sportsotore"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.myapp"
+        applicationId = "com.keimhean.sportsotore"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
