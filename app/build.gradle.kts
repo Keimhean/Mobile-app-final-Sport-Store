@@ -1,15 +1,15 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("com.google.gms.google-services")
+    // Temporarily disabled: id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.keimhean.sportsotore"
+    namespace = "com.example.myapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.keimhean.sportsotore"
+        applicationId = "com.example.myapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -43,6 +43,12 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    // Networking & JSON
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

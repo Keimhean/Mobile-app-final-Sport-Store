@@ -182,6 +182,13 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
+                    <ProgressBar
+                        android:id="@+id/progress_login"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
+
                 </FrameLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -326,7 +333,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/tv_sign_up"
+                    android:id="@+id/tv_register_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
