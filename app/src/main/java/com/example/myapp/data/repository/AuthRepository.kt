@@ -20,4 +20,8 @@ class AuthRepository {
     suspend fun me(token: String): UserResponse = withContext(Dispatchers.IO) {
         service.me("Bearer $token")
     }
+
+    suspend fun socialLogin(email: String, name: String, provider: String, firebaseUid: String): AuthResponse = withContext(Dispatchers.IO) {
+        service.socialLogin(SocialLoginRequest(email, name, provider, firebaseUid))
+    }
 }

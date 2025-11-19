@@ -4,12 +4,14 @@ const {
   register,
   login,
   getMe,
-  updateProfile
+  updateProfile,
+  socialLogin
 } = require('../controllers/authController');
 const { protect } = require('../middleware/auth');
 
 router.post('/register', register);
 router.post('/login', login);
+router.post('/social', socialLogin);
 router.get('/me', protect, getMe);
 router.put('/updateprofile', protect, updateProfile);
 

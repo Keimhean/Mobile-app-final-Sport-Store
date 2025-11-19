@@ -1,7 +1,19 @@
 package com.example.myapp.data.model
 
 data class LoginRequest(val email: String, val password: String)
-data class RegisterRequest(val name: String, val email: String, val password: String, val phone: String)
+data class RegisterRequest(
+    val name: String,
+    val email: String,
+    val password: String,
+    val phone: String
+)
+
+data class SocialLoginRequest(
+    val email: String,
+    val name: String,
+    val provider: String,
+    val firebaseUid: String
+)
 
 data class AuthData(
     val id: String?,

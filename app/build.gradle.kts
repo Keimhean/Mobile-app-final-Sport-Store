@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    // Temporarily disabled: id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -49,6 +49,12 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    // Facebook Login
+    implementation("com.facebook.android:facebook-login:16.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

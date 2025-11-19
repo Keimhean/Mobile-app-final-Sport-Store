@@ -122,3 +122,59 @@ exports.updateProfile = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
+
+// @desc    Social login (Google/Facebook via Firebase)
+// @route   POST /api/v1/auth/social
+// @access  Public
+exports.socialLogin = async (req, res) => {
+  try {
+    const { email, name, provider, firebaseUid } = req.body;
+
+    // Validate input
+    if (!email || !name || !provider || !firebaseUid) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Please provide email, name, provider, and firebaseUid' 
+      });
+    }
+
+    // Check if user exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create new user with social auth
+      user = await User.create({
+        name,
+        email,
+        password: `social_${firebaseUid}_${Date.now()}`, // Random password for social users
+        phone: '', // Optional for social login
+        provider,
+        firebaseUid
+      });
+    } else {
+      // Update last login
+      user.lastLogin = Date.now();
+      if (!user.provider) {
+        user.provider = provider;
+        user.firebaseUid = firebaseUid;
+      }
+      await user.save();
+    }
+
+    // Generate token
+    const token = generateToken(user._id);
+
+    res.json({
+      success: true,
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};

@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myapp.auth.FirebaseAuthHelper
 import com.example.myapp.data.repository.AuthRepository
 import com.example.myapp.util.TokenStore
 import com.google.android.material.card.MaterialCardView
@@ -18,13 +19,20 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private var isPasswordVisible = false
+    private lateinit var firebaseAuthHelper: FirebaseAuthHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        firebaseAuthHelper = FirebaseAuthHelper(this)
+
         val etPassword = findViewById<EditText>(R.id.et_password)
         val ivPasswordToggle = findViewById<ImageView>(R.id.iv_password_toggle)
+        val etEmail = findViewById<EditText>(R.id.et_email)
+        val progress = findViewById<ProgressBar>(R.id.progress_login)
+        val tvRegisterLink = findViewById<TextView>(R.id.tv_register_link)
+        val repo = AuthRepository()
 
         // Back button
         findViewById<MaterialCardView>(R.id.btn_back).setOnClickListener {
@@ -41,11 +49,6 @@ class LoginActivity : AppCompatActivity() {
             }
             etPassword.setSelection(etPassword.text.length)
         }
-
-        val etEmail = findViewById<EditText>(R.id.et_email)
-        val progress = findViewById<ProgressBar>(R.id.progress_login)
-        val tvRegisterLink = findViewById<TextView>(R.id.tv_register_link)
-        val repo = AuthRepository()
 
         // Sign in button (perform real login)
         findViewById<MaterialCardView>(R.id.btn_signin).setOnClickListener {
@@ -75,23 +78,29 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Navigate to register
-        tvRegisterLink.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
         // Google button
         findViewById<MaterialCardView>(R.id.btn_google).setOnClickListener {
-            // TODO: Implement Google sign-in
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+            progress.visibility = View.VISIBLE
+            val signInIntent = firebaseAuthHelper.startGoogleSignIn()
+            startActivityForResult(signInIntent, FirebaseAuthHelper.RC_GOOGLE_SIGN_IN)
         }
 
         // Facebook button
         findViewById<MaterialCardView>(R.id.btn_facebook).setOnClickListener {
-            // TODO: Implement Facebook sign-in
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
+            progress.visibility = View.VISIBLE
+            firebaseAuthHelper.startFacebookSignIn(
+                onSuccess = { token ->
+                    TokenStore.saveToken(this, token)
+                    Toast.makeText(this, "Facebook login success", Toast.LENGTH_SHORT).show()
+                    progress.visibility = View.GONE
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                },
+                onError = { error ->
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                    progress.visibility = View.GONE
+                }
+            )
         }
 
         // Continue as guest
@@ -99,5 +108,29 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
+
+        // Navigate to register
+        tvRegisterLink.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val progress = findViewById<ProgressBar>(R.id.progress_login)
+        
+        firebaseAuthHelper.onActivityResult(requestCode, resultCode, data,
+            onSuccess = { token ->
+                TokenStore.saveToken(this, token)
+                Toast.makeText(this, "Google login success", Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            },
+            onError = { error ->
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
+            }
+        )
     }
 }

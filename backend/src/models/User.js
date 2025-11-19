@@ -42,6 +42,15 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  provider: {
+    type: String,
+    enum: ['email', 'google', 'facebook'],
+    default: 'email'
+  },
+  firebaseUid: {
+    type: String,
+    sparse: true
+  },
   lastLogin: Date
 }, {
   timestamps: true

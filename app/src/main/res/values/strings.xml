@@ -46,4 +46,8 @@
     <!-- Profile -->
     <string name="profile_title">Profile</string>
     <string name="user_info">John Doe\njohndoe@example.com</string>
+    
+    <!-- Facebook SDK -->
+    <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
+    <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN</string>
 </resources>
