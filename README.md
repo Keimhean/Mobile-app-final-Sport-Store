@@ -3,7 +3,19 @@
 [![Android CI](https://github.com/Keimhean/Mobile-app-final-Sport-Store/workflows/Android%20CI/badge.svg)](https://github.com/Keimhean/Mobile-app-final-Sport-Store/actions)
 [![Android CD](https://github.com/Keimhean/Mobile-app-final-Sport-Store/workflows/Android%20CD/badge.svg)](https://github.com/Keimhean/Mobile-app-final-Sport-Store/actions)
 
-A modern Android sports equipment store app built with Kotlin, featuring a beautiful Material Design 3 UI, onboarding flow, category browsing, and full CI/CD pipeline.
+A modern Android sports equipment store app built with Kotlin, featuring a beautiful Material Design 3 UI, onboarding flow, category browsing, and full CI/CD pipeline. Complete with Node.js backend API, MongoDB database, and Kubernetes deployment.
+
+## 🏗️ Architecture
+
+```
+📱 Android App (Kotlin)
+        ↓ HTTPS
+🔵 Backend API (Node.js/Express) ← Docker Container
+        ↓ MongoDB Connection
+☸️ Kubernetes Cluster (Production)
+        ↓
+🍃 MongoDB (Products, Users, Orders)
+```
 
 ## ✨ Features
 
@@ -15,13 +27,21 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
 - 👤 **User Profile** - Profile management with stats (completed, active, wishlist)
 - 🔐 **Authentication Ready** - Login, Sign Up, Guest access
 
+### Backend API
+- 🔐 **JWT Authentication** - Secure user authentication with bcrypt
+- 📦 **Product Management** - CRUD operations with search and filters
+- 🛒 **Order Management** - Complete order lifecycle (pending → delivered)
+- 👥 **User Management** - Registration, login, profile updates
+- 🔒 **Role-Based Access** - User/Admin authorization
+- 📊 **MongoDB Integration** - Mongoose ODM with validation
+
 ### CI/CD Pipeline
 - ✅ **Automated Build** - Gradle builds on every push
 - ✅ **Unit Tests** - Automated testing on CI
 - ✅ **Lint Checks** - Code quality validation
 - ✅ **Firebase Distribution** - Auto-deploy to testers
-- 🐳 **Docker Support** - Containerized builds
-- ☸️ **Kubernetes Ready** - K8s deployment manifests
+- 🐳 **Docker Support** - Containerized builds for Android & Backend
+- ☸️ **Kubernetes Ready** - Full K8s manifests with MongoDB StatefulSet
 - 🚀 **Play Store Upload** - Automated releases
 
 ## 🛠️ Tech Stack
@@ -41,16 +61,17 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
 - CardView
 - BottomNavigationView
 
-### Backend Integration (Ready)
-- Firebase (App Distribution, Analytics)
-- Clean Architecture pattern
-- Dependency Injection (Hilt ready)
-- Ktor/Retrofit for networking
+### Backend
+- **Runtime:** Node.js 18
+- **Framework:** Express.js
+- **Database:** MongoDB 7.0 with Mongoose
+- **Authentication:** JWT + bcryptjs
+- **Security:** Helmet, CORS, input validation
 
 ### DevOps
 - **CI/CD:** GitHub Actions
-- **Containerization:** Docker
-- **Orchestration:** Kubernetes
+- **Containerization:** Docker (multi-stage builds)
+- **Orchestration:** Kubernetes (StatefulSets, Deployments, HPA)
 - **Distribution:** Firebase App Distribution
 - **Store:** Google Play Console
 
@@ -70,11 +91,35 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
    cd Mobile-app-final-Sport-Store
    ```
 
-2. **Open in Android Studio:**
+2. **Setup Backend (Optional but recommended):**
+   ```bash
+   cd backend
+   ./setup.sh
+   # Or manually:
+   npm install
+   cp .env.example .env
+   # Edit .env with your MongoDB URI
+   ```
+
+3. **Start MongoDB:**
+   ```bash
+   docker run -d -p 27017:27017 --name mongodb mongo:7.0
+   # Or use Docker Compose:
+   cd backend && docker-compose up -d
+   ```
+
+4. **Run Backend API:**
+   ```bash
+   cd backend
+   npm run dev
+   # API available at http://localhost:3000
+   ```
+
+5. **Open Android App in Android Studio:**
    - File → Open → Select project folder
    - Wait for Gradle sync
 
-3. **Run the app:**
+6. **Run the Android app:**
    ```bash
    ./gradlew installDebug
    # or press Run in Android Studio
@@ -104,56 +149,109 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
 
 ## 🐳 Docker
 
-### Build Docker Image
+### Android App Docker Image
 
 ```bash
-docker build -t sports-store:latest .
+docker build -t sports-store-android:latest .
+docker run -p 8080:80 sports-store-android:latest
+# Visit http://localhost:8080 to download APK
 ```
 
-### Run Container
+### Backend API Docker Image
 
 ```bash
-docker run -p 8080:80 sports-store:latest
-# Visit http://localhost:8080 to download APK
+cd backend
+docker build -t sports-store-backend:latest .
+docker run -d -p 3000:3000 \
+  -e MONGO_URI=mongodb://host.docker.internal:27017/sports_store \
+  -e JWT_SECRET=your-secret \
+  sports-store-backend:latest
+```
+
+### Full Stack with Docker Compose
+
+```bash
+cd backend
+docker-compose up -d
+# Backend: http://localhost:3000
+# MongoDB: localhost:27017
 ```
 
 ### Push to Docker Hub
 
 ```bash
 docker login
-docker tag sports-store:latest YOUR_USERNAME/sports-store:latest
-docker push YOUR_USERNAME/sports-store:latest
+docker tag sports-store-backend:latest YOUR_USERNAME/sports-store-backend:latest
+docker push YOUR_USERNAME/sports-store-backend:latest
 ```
 
 ## ☸️ Kubernetes
 
-### Deploy to Cluster
+### Deploy Full Stack to Cluster
 
 ```bash
 # Create namespace
-kubectl create namespace production
+kubectl create namespace sports-store
 
-# Apply deployment
+# Deploy MongoDB + Backend API
+kubectl apply -f k8s/backend-deployment.yaml
+
+# Deploy Android App
 kubectl apply -f k8s/deployment.yaml
 
 # Check status
-kubectl get pods -n production
-kubectl get svc -n production
+kubectl get all -n sports-store
 
 # View logs
+kubectl logs -f deployment/backend-api -n sports-store
 kubectl logs -f deployment/sports-store-app -n production
+
+# Get service endpoints
+kubectl get svc -n sports-store
+```
+
+### Update Secrets (Production)
+
+```bash
+# MongoDB credentials
+kubectl edit secret mongo-secret -n sports-store
+
+# Backend JWT secret and MongoDB URI
+kubectl edit secret backend-secret -n sports-store
+
+# Update Docker Hub username in deployment
+kubectl edit deployment backend-api -n sports-store
+```
+
+### Access Services
+
+```bash
+# Get Backend API URL
+kubectl get service backend-service -n sports-store
+# API: http://EXTERNAL_IP/api/v1
+
+# Test health endpoint
+curl http://EXTERNAL_IP/health
 ```
 
 ## 📦 CI/CD Workflows
 
 ### Continuous Integration (CI)
 Triggers on push/PR to `main` or `develop`:
+
+**Android CI:**
 - ✅ Build APK
 - ✅ Run unit tests
 - ✅ Lint checks
 - ✅ Upload artifacts
 - ✅ Firebase distribution
 - 🐳 Docker build & push (if secrets configured)
+
+**Backend CI:**
+- ✅ Install dependencies
+- ✅ Run tests
+- ✅ Build Docker image
+- 🐳 Push to Docker Hub (if secrets configured)
 
 ### Continuous Deployment (CD)
 Triggers on version tags (e.g., `v1.0.0`):
@@ -182,28 +280,16 @@ For full CI/CD functionality, add these secrets in GitHub:
 - `FIREBASE_SERVICE_CREDENTIALS`: Service account JSON
 
 ### Docker (Optional)
-- `DOCKER_USERNAME`: Docker Hub username
-- `DOCKER_PASSWORD`: Docker Hub access token
+- `DOCKERHUB_USERNAME`: Docker Hub username
+- `DOCKERHUB_TOKEN`: Docker Hub access token
 
-### App Signing (Optional)
-- `SIGNING_KEY`: Base64 encoded keystore
-- `ALIAS`: Keystore alias
-- `KEY_STORE_PASSWORD`: Keystore password
-- `KEY_PASSWORD`: Key password
-
-### Google Play (Optional)
-- `SERVICE_ACCOUNT_JSON`: Play Console service account
-
-### Kubernetes (Optional)
-- `KUBE_CONFIG`: Base64 encoded kubeconfig
-
-See [SECRETS_SETUP.md](SECRETS_SETUP.md) for detailed instructions.
+See [SECRETS_SETUP.md](SECRETS_SETUP.md) and [backend/README.md](backend/README.md) for detailed instructions.
 
 ## 📁 Project Structure
 
 ```
 Mobile-app-final-Sport-Store/
-├── app/
+├── app/                          # Android app source
 │   ├── src/
 │   │   └── main/
 │   │       ├── java/com/keimhean/sportsotore/
@@ -218,14 +304,41 @@ Mobile-app-final-Sport-Store/
 │   │       └── AndroidManifest.xml
 │   ├── build.gradle.kts
 │   └── google-services.json
+├── backend/                       # Node.js backend API
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.js
+│   │   ├── models/
+│   │   │   ├── Product.js
+│   │   │   ├── User.js
+│   │   │   └── Order.js
+│   │   ├── controllers/
+│   │   │   ├── productController.js
+│   │   │   ├── authController.js
+│   │   │   └── orderController.js
+│   │   ├── routes/
+│   │   │   ├── products.js
+│   │   │   ├── auth.js
+│   │   │   └── orders.js
+│   │   ├── middleware/
+│   │   │   ├── auth.js
+│   │   │   └── errorHandler.js
+│   │   └── server.js
+│   ├── package.json
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   ├── README.md
+│   └── API_DOCS.md
 ├── .github/
 │   └── workflows/
-│       ├── android-ci.yml
-│       └── android-cd.yml
+│       ├── android-ci.yml         # Android CI pipeline
+│       ├── android-cd.yml         # Android CD pipeline
+│       └── backend-ci.yml         # Backend CI pipeline
 ├── k8s/
-│   └── deployment.yaml
+│   ├── deployment.yaml            # Android app K8s deployment
+│   └── backend-deployment.yaml    # Backend + MongoDB K8s
 ├── gradle/
-├── Dockerfile
+├── Dockerfile                      # Android app Dockerfile
 ├── build.gradle.kts
 ├── settings.gradle.kts
 ├── CI_CD_SETUP.md
@@ -293,9 +406,11 @@ com.keimhean.sportsotore
 
 ## 📚 Documentation
 
-- [CI/CD Setup Guide](CI_CD_SETUP.md)
-- [Secrets Configuration](SECRETS_SETUP.md)
-- [Kubernetes Deployment](k8s/deployment.yaml)
+- **[Backend API Documentation](backend/README.md)** - Complete backend setup guide
+- **[API Reference](backend/API_DOCS.md)** - REST API endpoint documentation
+- **[CI/CD Setup Guide](CI_CD_SETUP.md)** - GitHub Actions workflows
+- **[Secrets Configuration](SECRETS_SETUP.md)** - Firebase and Docker secrets
+- **[Kubernetes Deployment](k8s/)** - K8s manifests for full stack
 
 ## 🤝 Contributing
 
