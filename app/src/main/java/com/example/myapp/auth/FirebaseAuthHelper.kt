@@ -39,8 +39,13 @@ class FirebaseAuthHelper(private val activity: Activity) {
     }
     
     private fun configureGoogleSignIn() {
+        // TODO: Replace with your actual Web Client ID from Firebase Console
+        // Get it from google-services.json after enabling Google Sign-In
+        // Look for "client_type": 3 in oauth_client array
+        val webClientId = "411738770294-YOUR_WEB_CLIENT_ID.apps.googleusercontent.com"
+        
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("411738770294-YOUR_WEB_CLIENT_ID.apps.googleusercontent.com") // Replace with your Web Client ID from Firebase Console
+            .requestIdToken(webClientId)
             .requestEmail()
             .build()
         
