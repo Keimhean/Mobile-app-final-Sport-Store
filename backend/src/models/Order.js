@@ -28,8 +28,9 @@ const orderSchema = new mongoose.Schema({
   items: [orderItemSchema],
   totalAmount: {
     type: Number,
-    required: true,
-    min: 0
+    required: false,
+    min: 0,
+    default: 0
   },
   status: {
     type: String,
