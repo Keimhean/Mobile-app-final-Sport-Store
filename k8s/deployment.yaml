@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sports-store
-        image: YOUR_DOCKER_USERNAME/sports-store:latest
+        image: YOUR_DOCKERHUB_USERNAME/mobile-app-final-sport-store:latest
         ports:
         - containerPort: 80
         resources:
