@@ -75,9 +75,10 @@ class HomeActivity : AppCompatActivity() {
         val rvProd = findViewById<RecyclerView>(R.id.rv_products)
         rvProd.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val prods = listOf(
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Nike", "Air Zoom Pegasus", 129.99, 159.99, 4.8, 342, isSale = true, isNew = true),
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Nike", "Basketball Elite Jersey", 79.99, null, 4.7, 89, isSale = false, isNew = true),
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Adidas", "Training Shorts", 39.99, null, 4.6, 51, isSale = false, isNew = false)
+            ProductAdapter.ProductItem(R.drawable.img_product_nike_pegasus, "Nike", "Air Zoom Pegasus", 129.99, 159.99, 4.8, 342, isSale = true, isNew = true),
+            ProductAdapter.ProductItem(R.drawable.img_product_nike_jersey, "Nike", "Basketball Elite Jersey", 79.99, null, 4.7, 89, isSale = false, isNew = true),
+            ProductAdapter.ProductItem(R.drawable.img_product_soccer_cleats, "Adidas", "Soccer Cleats Pro", 149.99, 179.99, 4.6, 156, isSale = true, isNew = false),
+            ProductAdapter.ProductItem(R.drawable.img_product_default, "Puma", "Training Shorts", 39.99, null, 4.5, 51, isSale = false, isNew = false)
         )
         rvProd.adapter = ProductAdapter(prods) { item ->
             // open detail (placeholder)
@@ -89,10 +90,12 @@ class HomeActivity : AppCompatActivity() {
         val rvBestSellers = findViewById<RecyclerView>(R.id.rv_best_sellers)
         rvBestSellers.layoutManager = GridLayoutManager(this, 2)
         val bestSellers = listOf(
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Nike", "Air Zoom Pegasus", 129.99, 159.99, 4.8, 342, isSale = true, isNew = true),
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Puma", "Pro Training Shoes", 89.99, null, 4.5, 128, isSale = false, isNew = false),
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Lululemon", "Yoga Mat Premium", 68.0, null, 4.6, 234, isSale = false, isNew = false),
-            ProductAdapter.ProductItem(android.R.drawable.ic_menu_report_image, "Adidas", "Soccer Cleats Elite", 149.99, 179.99, 4.7, 267, isSale = true, isNew = false)
+            ProductAdapter.ProductItem(R.drawable.img_product_nike_pegasus, "Nike", "Air Zoom Pegasus", 129.99, 159.99, 4.8, 342, isSale = true, isNew = true),
+            ProductAdapter.ProductItem(R.drawable.img_product_default, "Puma", "Pro Training Shoes", 89.99, null, 4.5, 128, isSale = false, isNew = false),
+            ProductAdapter.ProductItem(R.drawable.img_product_default, "Lululemon", "Yoga Mat Premium", 68.0, null, 4.6, 234, isSale = false, isNew = false),
+            ProductAdapter.ProductItem(R.drawable.img_product_soccer_cleats, "Adidas", "Soccer Cleats Elite", 149.99, 179.99, 4.7, 267, isSale = true, isNew = false),
+            ProductAdapter.ProductItem(R.drawable.img_product_nike_jersey, "Nike", "Basketball Jersey", 79.99, null, 4.7, 189, isSale = false, isNew = true),
+            ProductAdapter.ProductItem(R.drawable.img_product_default, "Under Armour", "Compression Shirt", 49.99, 59.99, 4.4, 95, isSale = true, isNew = false)
         )
         rvBestSellers.adapter = ProductAdapter(bestSellers) { item ->
             val i = Intent(this, ProductDetailActivity::class.java)
