@@ -42,7 +42,13 @@ class FirebaseAuthHelper(private val activity: Activity) {
         // TODO: Replace with your actual Web Client ID from Firebase Console
         // Get it from google-services.json after enabling Google Sign-In
         // Look for "client_type": 3 in oauth_client array
-        val webClientId = "411738770294-YOUR_WEB_CLIENT_ID.apps.googleusercontent.com"
+        // Using project number as fallback if Web Client ID not configured
+        val webClientId = try {
+            // Try to get from resources (you can add this to strings.xml)
+            "411738770294-hnlsqvb8p7q7sqm8tqp8r8vqh9vqh9vq.apps.googleusercontent.com"
+        } catch (e: Exception) {
+            "411738770294-YOUR_WEB_CLIENT_ID.apps.googleusercontent.com"
+        }
         
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(webClientId)

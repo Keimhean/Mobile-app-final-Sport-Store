@@ -19,17 +19,22 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private var isPasswordVisible = false
-    private lateinit var firebaseAuthHelper: FirebaseAuthHelper
+    private var firebaseAuthHelper: FirebaseAuthHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        firebaseAuthHelper = FirebaseAuthHelper(this)
-
-        val etPassword = findViewById<EditText>(R.id.et_password)
+        // Initialize Firebase helper with try-catch to handle missing configuration
+        try {
+            firebaseAuthHelper = FirebaseAuthHelper(this)
+        } catch (e: Exception) {
+            // Firebase not fully configured, social login will be disabled
+            android.util.Log.w("LoginActivity", "Firebase not configured: ${e.message}")
+        }
         val ivPasswordToggle = findViewById<ImageView>(R.id.iv_password_toggle)
         val etEmail = findViewById<EditText>(R.id.et_email)
+        val etPassword = findViewById<EditText>(R.id.et_password)
         val progress = findViewById<ProgressBar>(R.id.progress_login)
         val tvRegisterLink = findViewById<TextView>(R.id.tv_register_link)
         val repo = AuthRepository()
@@ -80,15 +85,23 @@ class LoginActivity : AppCompatActivity() {
 
         // Google button
         findViewById<MaterialCardView>(R.id.btn_google).setOnClickListener {
+            if (firebaseAuthHelper == null) {
+                Toast.makeText(this, "Firebase not configured. Please use email login.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             progress.visibility = View.VISIBLE
-            val signInIntent = firebaseAuthHelper.startGoogleSignIn()
-            startActivityForResult(signInIntent, FirebaseAuthHelper.RC_GOOGLE_SIGN_IN)
+            val signInIntent = firebaseAuthHelper?.startGoogleSignIn()
+            signInIntent?.let { startActivityForResult(it, FirebaseAuthHelper.RC_GOOGLE_SIGN_IN) }
         }
 
         // Facebook button
         findViewById<MaterialCardView>(R.id.btn_facebook).setOnClickListener {
+            if (firebaseAuthHelper == null) {
+                Toast.makeText(this, "Firebase not configured. Please use email login.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             progress.visibility = View.VISIBLE
-            firebaseAuthHelper.startFacebookSignIn(
+            firebaseAuthHelper?.startFacebookSignIn(
                 onSuccess = { token ->
                     TokenStore.saveToken(this, token)
                     Toast.makeText(this, "Facebook login success", Toast.LENGTH_SHORT).show()
@@ -117,9 +130,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        
+        if (firebaseAuthHelper == null) return
+        
         val progress = findViewById<ProgressBar>(R.id.progress_login)
         
-        firebaseAuthHelper.onActivityResult(requestCode, resultCode, data,
+        firebaseAuthHelper?.onActivityResult(requestCode, resultCode, data,
             onSuccess = { token ->
                 TokenStore.saveToken(this, token)
                 Toast.makeText(this, "Google login success", Toast.LENGTH_SHORT).show()
