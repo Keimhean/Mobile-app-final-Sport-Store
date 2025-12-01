@@ -277,8 +277,8 @@ For full CI/CD functionality, add these secrets in GitHub:
 **Settings → Secrets and variables → Actions → New repository secret**
 
 ### Firebase ( Currently Active)
-- `FIREBASE_APP_ID`: `1:411738770294:android:cda52d6d3a08fb88af8857`
-- `FIREBASE_SERVICE_CREDENTIALS`: Service account JSON
+- `FIREBASE_APP_ID`: `************`
+- `FIREBASE_SERVICE_CREDENTIALS`: *******
 
 ### Docker (Optional)
 - `DOCKERHUB_USERNAME`: Docker Hub username
