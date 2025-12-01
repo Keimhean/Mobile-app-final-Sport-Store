@@ -1,50 +1,50 @@
-# 🏃‍♂️ Sports Store - Android Mobile App
+#  Sports Store - Android Mobile App
 
 [![Android CI](https://github.com/Keimhean/Mobile-app-final-Sport-Store/workflows/Android%20CI/badge.svg)](https://github.com/Keimhean/Mobile-app-final-Sport-Store/actions)
 [![Android CD](https://github.com/Keimhean/Mobile-app-final-Sport-Store/workflows/Android%20CD/badge.svg)](https://github.com/Keimhean/Mobile-app-final-Sport-Store/actions)
 
 A modern Android sports equipment store app built with Kotlin, featuring a beautiful Material Design 3 UI, onboarding flow, category browsing, and full CI/CD pipeline. Complete with Node.js backend API, MongoDB database, and Kubernetes deployment.
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
-📱 Android App (Kotlin)
+ Android App (Kotlin)
         ↓ HTTPS
-🔵 Backend API (Node.js/Express) ← Docker Container
+ Backend API (Node.js/Express) ← Docker Container
         ↓ MongoDB Connection
-☸️ Kubernetes Cluster (Production)
+ Kubernetes Cluster (Production)
         ↓
-🍃 MongoDB (Products, Users, Orders)
+ MongoDB (Products, Users, Orders)
 ```
 
 ## ✨ Features
 
 ### Mobile App
-- 🎨 **Material Design 3** - Modern, beautiful UI with custom themes
-- 🏠 **Bottom Navigation** - 5-tab navigation (Home, Categories, Cart, Profile, Search)
-- 📱 **Onboarding Flow** - 3-page ViewPager2 onboarding for new users
-- 🏃 **9 Sport Categories** - Running, Gym, Swimming, Cycling, Tennis, Soccer, Basketball, Yoga, Golf
-- 👤 **User Profile** - Profile management with stats (completed, active, wishlist)
-- 🔐 **Authentication Ready** - Login, Sign Up, Guest access
+-  **Material Design 3** - Modern, beautiful UI with custom themes
+-  **Bottom Navigation** - 5-tab navigation (Home, Categories, Cart, Profile, Search)
+-  **Onboarding Flow** - 3-page ViewPager2 onboarding for new users
+-  **9 Sport Categories** - Running, Gym, Swimming, Cycling, Tennis, Soccer, Basketball, Yoga, Golf
+-  **User Profile** - Profile management with stats (completed, active, wishlist)
+-  **Authentication Ready** - Login, Sign Up, Guest access
 
 ### Backend API
-- 🔐 **JWT Authentication** - Secure user authentication with bcrypt
-- 📦 **Product Management** - CRUD operations with search and filters
-- 🛒 **Order Management** - Complete order lifecycle (pending → delivered)
-- 👥 **User Management** - Registration, login, profile updates
-- 🔒 **Role-Based Access** - User/Admin authorization
-- 📊 **MongoDB Integration** - Mongoose ODM with validation
+-  **JWT Authentication** - Secure user authentication with bcrypt
+-  **Product Management** - CRUD operations with search and filters
+-  **Order Management** - Complete order lifecycle (pending → delivered)
+-  **User Management** - Registration, login, profile updates
+-  **Role-Based Access** - User/Admin authorization
+-  **MongoDB Integration** - Mongoose ODM with validation
 
 ### CI/CD Pipeline
-- ✅ **Automated Build** - Gradle builds on every push
-- ✅ **Unit Tests** - Automated testing on CI
-- ✅ **Lint Checks** - Code quality validation
-- ✅ **Firebase Distribution** - Auto-deploy to testers
-- 🐳 **Docker Support** - Containerized builds for Android & Backend
-- ☸️ **Kubernetes Ready** - Full K8s manifests with MongoDB StatefulSet
-- 🚀 **Play Store Upload** - Automated releases
+-  **Automated Build** - Gradle builds on every push
+-  **Unit Tests** - Automated testing on CI
+-  **Lint Checks** - Code quality validation
+-  **Firebase Distribution** - Auto-deploy to testers
+-  **Docker Support** - Containerized builds for Android & Backend
+-  **Kubernetes Ready** - Full K8s manifests with MongoDB StatefulSet
+-  **Play Store Upload** - Automated releases
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Android
 - **Language:** Kotlin 1.9.21
@@ -75,7 +75,7 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
 - **Distribution:** Firebase App Distribution
 - **Store:** Google Play Console
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Android Studio Hedgehog or later
@@ -147,7 +147,7 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
 ./gradlew installDebug
 ```
 
-## 🐳 Docker
+##  Docker
 
 ### Android App Docker Image
 
@@ -185,7 +185,7 @@ docker tag sports-store-backend:latest YOUR_USERNAME/sports-store-backend:latest
 docker push YOUR_USERNAME/sports-store-backend:latest
 ```
 
-## ☸️ Kubernetes
+##  Kubernetes
 
 ### Deploy Full Stack to Cluster
 
@@ -234,34 +234,34 @@ kubectl get service backend-service -n sports-store
 curl http://EXTERNAL_IP/health
 ```
 
-## 📦 CI/CD Workflows
+##  CI/CD Workflows
 
 ### Continuous Integration (CI)
 Triggers on push/PR to `main` or `develop`:
 
 **Android CI:**
-- ✅ Build APK
-- ✅ Run unit tests
-- ✅ Lint checks
-- ✅ Upload artifacts
-- ✅ Firebase distribution
-- 🐳 Docker build & push (if secrets configured)
+-  Build APK
+-  Run unit tests
+-  Lint checks
+-  Upload artifacts
+-  Firebase distribution
+-  Docker build & push (if secrets configured)
 
 **Backend CI:**
-- ✅ Install dependencies
-- ✅ Run tests
-- ✅ Build Docker image
-- 🐳 Push to Docker Hub (if secrets configured)
+-  Install dependencies
+-  Run tests
+-  Build Docker image
+-  Push to Docker Hub (if secrets configured)
 
 ### Continuous Deployment (CD)
 Triggers on version tags (e.g., `v1.0.0`):
-- ✅ Build release APK
-- ✅ Sign APK (if keystore configured)
-- ✅ Create GitHub release
-- ✅ Firebase distribution
-- ✅ Play Store upload (if configured)
-- 🐳 Docker deployment
-- ☸️ Kubernetes rollout
+-  Build release APK
+-  Sign APK (if keystore configured)
+-  Create GitHub release
+-  Firebase distribution
+-  Play Store upload (if configured)
+-  Docker deployment
+-  Kubernetes rollout
 
 ### Create a Release
 
@@ -270,12 +270,12 @@ git tag -a v1.0.0 -m "Release version 1.0.0"
 git push origin v1.0.0
 ```
 
-## 🔐 Setup GitHub Secrets
+##  Setup GitHub Secrets
 
 For full CI/CD functionality, add these secrets in GitHub:
 **Settings → Secrets and variables → Actions → New repository secret**
 
-### Firebase (✅ Currently Active)
+### Firebase ( Currently Active)
 - `FIREBASE_APP_ID`: `1:411738770294:android:cda52d6d3a08fb88af8857`
 - `FIREBASE_SERVICE_CREDENTIALS`: Service account JSON
 
@@ -285,7 +285,7 @@ For full CI/CD functionality, add these secrets in GitHub:
 
 See [SECRETS_SETUP.md](SECRETS_SETUP.md) and [backend/README.md](backend/README.md) for detailed instructions.
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 Mobile-app-final-Sport-Store/
@@ -346,7 +346,7 @@ Mobile-app-final-Sport-Store/
 └── README.md
 ```
 
-## 🎨 Screenshots
+##  Screenshots
 
 ### Onboarding Flow
 - Page 1: Shop Sports Gear Easily
@@ -359,7 +359,7 @@ Mobile-app-final-Sport-Store/
 - Bottom navigation with 5 tabs
 - User profile with activity stats
 
-## 🔧 Configuration
+##  Configuration
 
 ### Package Name
 ```
@@ -374,14 +374,14 @@ com.keimhean.sportsotore
 - Version Code: 1
 - Version Name: 1.0
 
-## 📝 Development Guide
+##  Development Guide
 
 ### Adding New Category
 
 1. Create gradient drawable in `res/drawable/img_category_*.xml`
 2. Add to `CategoryActivity.kt`:
    ```kotlin
-   CategoryItem("⚽", "Category Name", R.drawable.img_category_name)
+   CategoryItem("", "Category Name", R.drawable.img_category_name)
    ```
 
 ### Adding New Screen
@@ -391,7 +391,7 @@ com.keimhean.sportsotore
 3. Register in `AndroidManifest.xml`
 4. Add navigation in MainActivity
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Run all tests
@@ -404,7 +404,7 @@ com.keimhean.sportsotore
 ./gradlew test jacocoTestReport
 ```
 
-## 📚 Documentation
+##  Documentation
 
 - **[Backend API Documentation](backend/README.md)** - Complete backend setup guide
 - **[API Reference](backend/API_DOCS.md)** - REST API endpoint documentation
@@ -412,7 +412,7 @@ com.keimhean.sportsotore
 - **[Secrets Configuration](SECRETS_SETUP.md)** - Firebase and Docker secrets
 - **[Kubernetes Deployment](k8s/)** - K8s manifests for full stack
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature/amazing-feature`
@@ -420,17 +420,17 @@ com.keimhean.sportsotore
 4. Push to branch: `git push origin feature/amazing-feature`
 5. Open Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License.
 
-## 👤 Author
+##  Author
 
 **Keimhean**
 - GitHub: [@Keimhean](https://github.com/Keimhean)
 - Repository: [Mobile-app-final-Sport-Store](https://github.com/Keimhean/Mobile-app-final-Sport-Store)
 
-## 🌟 Acknowledgments
+##  Acknowledgments
 
 - Material Design 3 components
 - Firebase for distribution
@@ -439,4 +439,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**⭐ Star this repo if you find it helpful!**
+** Star this repo if you find it helpful!**
