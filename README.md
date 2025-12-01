@@ -368,8 +368,8 @@ com.keimhean.sportsotore
 ```
 
 ### Firebase Project
-- Project ID: `finalproject-kotlin-a735b`
-- App ID: `1:411738770294:android:cda52d6d3a08fb88af8857`
+- Project ID: `***************`
+- App ID: `***************`
 
 ### Version Info
 - Version Code: 1
