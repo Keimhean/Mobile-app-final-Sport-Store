@@ -440,4 +440,4 @@ This project is licensed under the MIT License.
 
 ---
 
-** Star this repo if you find it helpful!**
+ Star this repo if you find it helpful!
