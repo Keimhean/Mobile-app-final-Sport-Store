@@ -2,7 +2,8 @@
 
 [![Android CI](https://github.com/Keimhean/Mobile-app-final-Sport-Store/workflows/Android%20CI/badge.svg)](https://github.com/Keimhean/Mobile-app-final-Sport-Store/actions)
 [![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?logo=kotlin&logoColor=white)](https://kotlinlang.org/docs/home.html)
+[![MongoDB Docker](https://img.shields.io/badge/MongoDB_Docker-0db7ed?logo=docker&logoColor=white)](https://hub.docker.com/_/mongo)
+
 A modern Android sports equipment store app built with Kotlin, featuring a beautiful Material Design 3 UI, onboarding flow, category browsing, and full CI/CD pipeline. Complete with Node.js backend API, MongoDB database, and Kubernetes deployment.
 
 ##  Architecture
