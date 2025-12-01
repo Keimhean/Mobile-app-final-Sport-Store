@@ -17,7 +17,7 @@ A modern Android sports equipment store app built with Kotlin, featuring a beaut
  MongoDB (Products, Users, Orders)
 ```
 
-## ✨ Features
+##  Features
 
 ### Mobile App
 -  **Material Design 3** - Modern, beautiful UI with custom themes
