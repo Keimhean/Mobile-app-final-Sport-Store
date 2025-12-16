@@ -19,6 +19,7 @@
 
         <!-- Menu Button -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:cardCornerRadius="12dp"
