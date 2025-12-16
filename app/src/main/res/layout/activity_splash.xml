@@ -10,8 +10,8 @@
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        android:contentDescription="Logo" />
+        android:src="@drawable/applogo" />
+    <!--        android:contentDescription="Logo" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,3 +22,4 @@
         android:textStyle="bold" />
 
 </LinearLayout>
+
