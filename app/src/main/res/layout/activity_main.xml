@@ -47,7 +47,8 @@
             app:itemTextAppearanceActive="@style/BottomNavTextActive"
             app:itemTextAppearanceInactive="@style/BottomNavTextInactive"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu" />
+            app:menu="@menu/bottom_nav_menu"
+            />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

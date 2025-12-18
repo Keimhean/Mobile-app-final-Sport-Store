@@ -11,6 +11,7 @@ import com.example.myapp.CategoryAdapter.CategoryItem
 import com.example.myapp.ProductAdapter.ProductItem
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 
 class HomeActivity : AppCompatActivity() {
@@ -60,14 +61,14 @@ class HomeActivity : AppCompatActivity() {
 
         // Categories grid (3 columns)
         val rvCat = findViewById<RecyclerView>(R.id.rv_categories)
-        rvCat.layoutManager = GridLayoutManager(this, 3)
+        rvCat.layoutManager = GridLayoutManager(this, 2)
         val cats = listOf(
             CategoryItem("🏃", "Running", R.drawable.img_category_running),
             CategoryItem("⚽", "Football", R.drawable.img_category_football),
             CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball),
             CategoryItem("🎾", "Tennis", R.drawable.img_category_tennis),
-            CategoryItem("💪", "Gym", R.drawable.img_category_running),
-            CategoryItem("🏊", "Swimming", R.drawable.img_category_tennis)
+//            CategoryItem("💪", "Gym", R.drawable.img_category_running),
+//            CategoryItem("🏊", "Swimming", R.drawable.img_category_tennis)
         )
         rvCat.adapter = CategoryAdapter(cats)
 
@@ -101,10 +102,17 @@ class HomeActivity : AppCompatActivity() {
             val i = Intent(this, ProductDetailActivity::class.java)
             startActivity(i)
         }
-
+//
+        findViewById<MaterialCardView>(R.id.tv_see_all).setOnClickListener {
+            startActivity(Intent(this, CategoryActivity::class.java))
+            finish()
+        }
         // Banner shop button
         findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_banner_shop).setOnClickListener {
             startActivity(Intent(this, CategoryActivity::class.java))
         }
+//        findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_help).setOnClickListener {
+//            startActivity(Intent(this, H::class.java))
+//        }
     }
 }

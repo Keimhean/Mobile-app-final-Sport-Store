@@ -18,10 +18,10 @@ class CategoryActivity : AppCompatActivity() {
             CategoryAdapter.CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball),
             CategoryAdapter.CategoryItem("🎾", "Tennis & Racket Sports", R.drawable.img_category_tennis),
             CategoryAdapter.CategoryItem("💪", "Gym & Training", R.drawable.img_category_gym),
-            CategoryAdapter.CategoryItem("🏊", "Swimming & Water Sports", R.drawable.img_category_swimming),
+//            CategoryAdapter.CategoryItem("🏊", "Swimming & Water Sports", R.drawable.img_category_swimming),
             CategoryAdapter.CategoryItem("🚴", "Cycling", R.drawable.img_category_cycling),
-            CategoryAdapter.CategoryItem("🏏", "Cricket / Baseball", R.drawable.img_category_cricket),
-            CategoryAdapter.CategoryItem("⛳", "Golf", R.drawable.img_category_golf)
+//            CategoryAdapter.CategoryItem("🏏", "Cricket / Baseball", R.drawable.img_category_cricket),
+//            CategoryAdapter.CategoryItem("⛳", "Golf", R.drawable.img_category_golf)
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_categories)

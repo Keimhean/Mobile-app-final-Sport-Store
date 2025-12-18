@@ -11,6 +11,7 @@
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
 
+
     <!-- Splash / Auth -->
     <string name="splash_title">Sports Store</string>
     <string name="welcome_back">Welcome Back</string>
