@@ -2,6 +2,7 @@ package com.example.myapp
 
 import android.content.Intent
 import android.os.Bundle
+import  android.widget.TextView
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
+
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,9 +105,9 @@ class HomeActivity : AppCompatActivity() {
             startActivity(i)
         }
 //
-        findViewById<MaterialCardView>(R.id.tv_see_all).setOnClickListener {
+        findViewById<TextView>(R.id.tv_see_all).setOnClickListener {
             startActivity(Intent(this, CategoryActivity::class.java))
-            finish()
+//            finish()
         }
         // Banner shop button
         findViewById<com.google.android.material.button.MaterialButton>(R.id.btn_banner_shop).setOnClickListener {
