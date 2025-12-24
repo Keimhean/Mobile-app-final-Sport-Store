@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- LOGO (LEFT) -->
+    <item
+        android:id="@+id/action_logo"
+        android:color="#9E9E9E"
+        app:actionLayout="@layout/menu_logo"
+        app:showAsAction="always" />
+
+    <!-- SEARCH -->
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
-        app:showAsAction="ifRoom" />
+        android:color="#9E9E9E"
+        app:showAsAction="always" />
+
+    <!-- CART -->
     <item
         android:id="@+id/action_cart"
         android:icon="@drawable/ic_cart"
         android:title="@string/cart"
-        app:showAsAction="ifRoom" />
+        android:color="#9E9E9E"
+        app:showAsAction="always" />
+<!--    <item android:color="#9E9E9E" android:state_enabled="false"/>-->
+
 </menu>

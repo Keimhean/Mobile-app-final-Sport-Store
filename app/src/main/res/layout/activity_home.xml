@@ -9,13 +9,29 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
+            android:color="#9E9E9E"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
+            android:textColor="#FF6A00"
             app:menu="@menu/top_app_bar_menu"
-            style="@style/Widget.Material3.Toolbar" />
+            app:titleTextColor="#FF6A00"
+/>
+            style="@style/Widget.Material3.Toolbar"
+            />
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:id="@+id/top_app_bar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            app:logo="@drawable/applogo"-->
+<!--            app:logoDescription="App Logo"-->
+<!--            app:title="Cambo Sport"-->
+<!--            app:menu="@menu/top_app_bar_menu"-->
+<!--            app:contentInsetStartWithNavigation="0dp" />-->
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,81 +48,152 @@
             android:padding="16dp">
 
             <!-- Banner redesigned with gradient, icon and spacing -->
-            <com.google.android.material.card.MaterialCardView
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="170dp"-->
+<!--                android:layout_marginBottom="24dp"-->
+<!--                app:cardCornerRadius="32dp"-->
+<!--                app:cardElevation="12dp"-->
+<!--                app:strokeWidth="0dp"-->
+<!--                android:background="@drawable/bg_home_banner">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="28dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:gravity="center_vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_banner_icon"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="⚡"-->
+<!--                            android:textSize="20sp"-->
+<!--                            android:paddingEnd="8dp" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_banner_title"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Season Sale"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textSize="18sp"-->
+<!--                            android:textColor="#B45309" />-->
+<!--                    </LinearLayout>-->
+
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        android:id="@+id/btn_banner_shop"-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="44dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:backgroundTint="#142C52"-->
+<!--                        android:text="Shop Now"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textColor="#FFFFFF"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:cornerRadius="22dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_banner_sub"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:text="Up to 40% Off"-->
+<!--                        android:textSize="22sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#111827" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_banner_desc"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:text="On selected sports equipment"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textColor="#6B7280" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_marginBottom="24dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="12dp"
-                app:strokeWidth="0dp"
-                android:background="@drawable/bg_home_banner">
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_season_sale"
+                android:layout_margin="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="28dp">
+                <!-- Icon -->
+                <ImageView
+                    android:id="@+id/ic_sale"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_star"
+                    android:tint="#FF6A00"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                <!-- Season Sale -->
+                <TextView
+                    android:id="@+id/tvSeason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Season Sale"
+                    android:textStyle="bold"
+                    android:textColor="#FF6A00"
+                    android:textSize="16sp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@id/ic_sale"
+                    app:layout_constraintTop_toTopOf="@id/ic_sale" />
 
-                        <TextView
-                            android:id="@+id/tv_banner_icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="⚡"
-                            android:textSize="20sp"
-                            android:paddingEnd="8dp" />
+                <!-- Discount -->
+                <TextView
+                    android:id="@+id/tvDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Up to 40% Off"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@id/ic_sale"
+                    app:layout_constraintTop_toBottomOf="@id/ic_sale" />
 
-                        <TextView
-                            android:id="@+id/tv_banner_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Season Sale"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="#B45309" />
-                    </LinearLayout>
+                <!-- Description -->
+                <TextView
+                    android:id="@+id/tvDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On selected sports equipment"
+                    android:textColor="#6E6E6E"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="@id/tvDiscount"
+                    app:layout_constraintTop_toBottomOf="@id/tvDiscount" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_banner_shop"
-                        android:layout_width="120dp"
-                        android:layout_height="44dp"
-                        android:layout_marginTop="15dp"
-                        android:backgroundTint="#142C52"
-                        android:text="Shop Now"
-                        android:textAllCaps="false"
-                        android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="22dp" />
+                <!-- Button -->
+                <Button
+                    android:id="@+id/btn_banner_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Shop Now"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bg_shop_now"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tv_banner_sub"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Up to 40% Off"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="#111827" />
-
-                    <TextView
-                        android:id="@+id/tv_banner_desc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="On selected sports equipment"
-                        android:textSize="14sp"
-                        android:textColor="#6B7280" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Categories header -->
             <LinearLayout
                 android:layout_width="match_parent"
