@@ -33,12 +33,60 @@
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/et_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="1"
+            android:hint="Enter quantity" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size (Optional)"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/sizes" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color (Optional)"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/spinner_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/colors" />
+
         <Button
             android:id="@+id/btn_add_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_to_cart"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btn_view_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Cart"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 

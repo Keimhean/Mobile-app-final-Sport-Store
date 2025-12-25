@@ -6,8 +6,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapp.data.model.Product
 
-class ProductAdapter(private val items: List<ProductItem>, private val click: (ProductItem)->Unit) : RecyclerView.Adapter<ProductAdapter.VH>() {
+class ProductAdapter private constructor(
+    private val items: List<Any>,
+    private val clickListener: (Any) -> Unit
+) : RecyclerView.Adapter<ProductAdapter.VH>() {
+
+    companion object {
+        fun forProductItems(items: List<ProductItem>, click: (ProductItem) -> Unit): ProductAdapter {
+            return ProductAdapter(items) { click(it as ProductItem) }
+        }
+
+        fun forProducts(products: List<Product>, onClick: (Product) -> Unit): ProductAdapter {
+            return ProductAdapter(products) { onClick(it as Product) }
+        }
+    }
 
     data class ProductItem(
         val imageRes: Int,
@@ -40,22 +54,39 @@ class ProductAdapter(private val items: List<ProductItem>, private val click: (P
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = items[position]
-        holder.iv.setImageResource(item.imageRes)
-        holder.brand.text = item.brand
-        holder.title.text = item.title
-        holder.price.text = String.format("$%.2f", item.price)
-        if (item.oldPrice != null) {
-            holder.oldPrice.visibility = View.VISIBLE
-            holder.oldPrice.text = String.format("$%.2f", item.oldPrice)
-            holder.oldPrice.paintFlags = holder.oldPrice.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
-        } else {
-            holder.oldPrice.visibility = View.GONE
+        
+        when (item) {
+            is ProductItem -> {
+                holder.iv.setImageResource(item.imageRes)
+                holder.brand.text = item.brand
+                holder.title.text = item.title
+                holder.price.text = String.format("$%.2f", item.price)
+                if (item.oldPrice != null) {
+                    holder.oldPrice.visibility = View.VISIBLE
+                    holder.oldPrice.text = String.format("$%.2f", item.oldPrice)
+                    holder.oldPrice.paintFlags = holder.oldPrice.paintFlags or android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+                } else {
+                    holder.oldPrice.visibility = View.GONE
+                }
+                holder.rating.text = String.format("%.1f", item.rating)
+                holder.reviews.text = "(${item.reviews})"
+                holder.badgeSale.visibility = if (item.isSale) View.VISIBLE else View.GONE
+                holder.badgeNew.visibility = if (item.isNew) View.VISIBLE else View.GONE
+            }
+            is Product -> {
+                holder.iv.setImageResource(android.R.drawable.ic_menu_gallery)
+                holder.brand.text = item.brand
+                holder.title.text = item.name
+                holder.price.text = String.format("$%.2f", item.price)
+                holder.oldPrice.visibility = View.GONE
+                holder.rating.text = String.format("%.1f", item.ratings?.average ?: 0.0)
+                holder.reviews.text = "(${item.ratings?.count ?: 0})"
+                holder.badgeSale.visibility = View.GONE
+                holder.badgeNew.visibility = if (item.featured == true) View.VISIBLE else View.GONE
+            }
         }
-        holder.rating.text = String.format("%.1f", item.rating)
-        holder.reviews.text = "(${item.reviews})"
-        holder.badgeSale.visibility = if (item.isSale) View.VISIBLE else View.GONE
-        holder.badgeNew.visibility = if (item.isNew) View.VISIBLE else View.GONE
-        holder.itemView.setOnClickListener { click(item) }
+        
+        holder.itemView.setOnClickListener { clickListener.invoke(item) }
     }
 
     override fun getItemCount(): Int = items.size

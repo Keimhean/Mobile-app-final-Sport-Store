@@ -12,7 +12,6 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <!-- Placeholder list -->
     <TextView
         android:id="@+id/tv_cart_empty"
         android:layout_width="wrap_content"
@@ -20,11 +19,43 @@
         android:text="@string/no_items"
         android:layout_marginTop="24dp" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/cart_items_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_total_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total: $0.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btn_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/checkout"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="12dp"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/btn_continue_shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue Shopping"
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.myapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter(private val items: List<CategoryItem>) : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
-    data class CategoryItem(val emoji: String, val label: String, val imageRes: Int)
+    data class CategoryItem(val emoji: String, val label: String, val imageRes: Int, val category: String)
 
     class VH(view: View) : RecyclerView.ViewHolder(view) {
         val emojiView: TextView = view.findViewById(R.id.tv_emoji)
@@ -27,6 +28,12 @@ class CategoryAdapter(private val items: List<CategoryItem>) : RecyclerView.Adap
         holder.emojiView.text = it.emoji
         holder.labelView.text = it.label
         holder.imageView.setImageResource(it.imageRes)
+        
+        holder.itemView.setOnClickListener { view ->
+            val intent = Intent(view.context, ProductListActivity::class.java)
+            intent.putExtra("category", it.category)
+            view.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = items.size

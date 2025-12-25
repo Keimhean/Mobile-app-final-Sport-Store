@@ -65,12 +65,12 @@ class HomeActivity : AppCompatActivity() {
         val rvCat = findViewById<RecyclerView>(R.id.rv_categories)
         rvCat.layoutManager = GridLayoutManager(this, 2)
         val cats = listOf(
-            CategoryItem("🏃", "Running", R.drawable.img_category_running),
-            CategoryItem("⚽", "Football", R.drawable.img_category_football),
-            CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball),
-            CategoryItem("🎾", "Tennis", R.drawable.img_category_tennis),
-//            CategoryItem("💪", "Gym", R.drawable.img_category_running),
-//            CategoryItem("🏊", "Swimming", R.drawable.img_category_tennis)
+            CategoryItem("🏃", "Running", R.drawable.img_category_running, "Running"),
+            CategoryItem("⚽", "Football", R.drawable.img_category_football, "Football"),
+            CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball, "Basketball"),
+            CategoryItem("🎾", "Tennis", R.drawable.img_category_tennis, "Tennis")
+//            CategoryItem("💪", "Gym", R.drawable.img_category_running, "Gym"),
+//            CategoryItem("🏊", "Swimming", R.drawable.img_category_tennis, "Swimming")
         )
         rvCat.adapter = CategoryAdapter(cats)
 
@@ -83,7 +83,7 @@ class HomeActivity : AppCompatActivity() {
             ProductAdapter.ProductItem(R.drawable.img_product_soccer_cleats, "Adidas", "Soccer Cleats Pro", 149.99, 179.99, 4.6, 156, isSale = true, isNew = false),
             ProductAdapter.ProductItem(R.drawable.img_product_default, "Puma", "Training Shorts", 39.99, null, 4.5, 51, isSale = false, isNew = false)
         )
-        rvProd.adapter = ProductAdapter(prods) { item ->
+        rvProd.adapter = ProductAdapter.forProductItems(prods) { item ->
             // open detail (placeholder)
             val i = Intent(this, ProductDetailActivity::class.java)
             startActivity(i)
@@ -100,7 +100,7 @@ class HomeActivity : AppCompatActivity() {
             ProductAdapter.ProductItem(R.drawable.img_product_nike_jersey, "Nike", "Basketball Jersey", 79.99, null, 4.7, 189, isSale = false, isNew = true),
             ProductAdapter.ProductItem(R.drawable.img_product_default, "Under Armour", "Compression Shirt", 49.99, 59.99, 4.4, 95, isSale = true, isNew = false)
         )
-        rvBestSellers.adapter = ProductAdapter(bestSellers) { item ->
+        rvBestSellers.adapter = ProductAdapter.forProductItems(bestSellers) { item ->
             val i = Intent(this, ProductDetailActivity::class.java)
             startActivity(i)
         }

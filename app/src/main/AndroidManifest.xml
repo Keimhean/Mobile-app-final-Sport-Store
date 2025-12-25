@@ -32,6 +32,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".CategoryActivity" />
+        <activity android:name=".ProductListActivity" />
         <activity android:name=".ProductDetailActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".CheckoutActivity" />

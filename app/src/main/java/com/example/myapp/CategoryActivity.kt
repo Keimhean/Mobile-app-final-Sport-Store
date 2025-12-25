@@ -13,15 +13,15 @@ class CategoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_category)
 
         val categories = listOf(
-            CategoryAdapter.CategoryItem("🏃", "Running & Fitness", R.drawable.img_category_running),
-            CategoryAdapter.CategoryItem("⚽", "Football / Soccer", R.drawable.img_category_football),
-            CategoryAdapter.CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball),
-            CategoryAdapter.CategoryItem("🎾", "Tennis & Racket Sports", R.drawable.img_category_tennis),
-            CategoryAdapter.CategoryItem("💪", "Gym & Training", R.drawable.img_category_gym),
-//            CategoryAdapter.CategoryItem("🏊", "Swimming & Water Sports", R.drawable.img_category_swimming),
-            CategoryAdapter.CategoryItem("🚴", "Cycling", R.drawable.img_category_cycling),
-//            CategoryAdapter.CategoryItem("🏏", "Cricket / Baseball", R.drawable.img_category_cricket),
-//            CategoryAdapter.CategoryItem("⛳", "Golf", R.drawable.img_category_golf)
+            CategoryAdapter.CategoryItem("🏃", "Running & Fitness", R.drawable.img_category_running, "Running"),
+            CategoryAdapter.CategoryItem("⚽", "Football / Soccer", R.drawable.img_category_football, "Football"),
+            CategoryAdapter.CategoryItem("🏀", "Basketball", R.drawable.img_category_basketball, "Basketball"),
+            CategoryAdapter.CategoryItem("🎾", "Tennis & Racket Sports", R.drawable.img_category_tennis, "Tennis"),
+            CategoryAdapter.CategoryItem("💪", "Gym & Training", R.drawable.img_category_gym, "Gym"),
+//            CategoryAdapter.CategoryItem("🏊", "Swimming & Water Sports", R.drawable.img_category_swimming, "Swimming"),
+            CategoryAdapter.CategoryItem("🚴", "Cycling", R.drawable.img_category_cycling, "Other"),
+//            CategoryAdapter.CategoryItem("🏏", "Cricket / Baseball", R.drawable.img_category_cricket, "Cricket"),
+//            CategoryAdapter.CategoryItem("⛳", "Golf", R.drawable.img_category_golf, "Golf")
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.rv_categories)

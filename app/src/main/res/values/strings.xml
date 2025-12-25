@@ -53,4 +53,26 @@
     <!-- See FIREBASE_QUICKFIX.md for complete setup instructions -->
     <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
     <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN</string>
+
+    <!-- Arrays for product selection -->
+    <string-array name="sizes">
+        <item>None</item>
+        <item>XS</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+        <item>XXL</item>
+    </string-array>
+
+    <string-array name="colors">
+        <item>None</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Black</item>
+        <item>White</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Gray</item>
+    </string-array>
 </resources>
