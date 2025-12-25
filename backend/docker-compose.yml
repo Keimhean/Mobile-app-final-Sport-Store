@@ -32,10 +32,60 @@ services:
       JWT_SECRET: your-super-secret-jwt-key-change-this-in-production
       JWT_EXPIRE: 7d
       CORS_ORIGINS: http://localhost:3000,http://localhost:8080
+      AI_SERVICE_URL: http://ai-service:5000
+      BLOCKCHAIN_SERVICE_URL: http://blockchain-service:4000
+      AI_SERVICE_EXTERNAL_URL: http://localhost:5001
     depends_on:
       - mongodb
+      - ai-service
+      - blockchain-service
     networks:
       - sports-store-network
+
+  # AI Recommendation Service
+  ai-service:
+    build:
+      context: ../ai-service
+      dockerfile: Dockerfile
+    container_name: sports-store-ai
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    environment:
+      FLASK_ENV: production
+      PYTHONUNBUFFERED: 1
+    networks:
+      - sports-store-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Blockchain Service
+  blockchain-service:
+    build:
+      context: ../blockchain-service
+      dockerfile: Dockerfile
+    container_name: sports-store-blockchain
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      ETHEREUM_RPC_URL: http://host.docker.internal:8545
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - sports-store-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
 
 volumes:
   mongodb_data:

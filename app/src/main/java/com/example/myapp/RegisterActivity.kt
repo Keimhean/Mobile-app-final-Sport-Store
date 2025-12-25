@@ -1,6 +1,13 @@
 package com.example.myapp
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -35,19 +42,33 @@ class RegisterActivity : AppCompatActivity() {
         progress = findViewById(R.id.progress_register)
         repo = AuthRepository()
 
-        // optional back button (layout may not include it)
-        findViewById<MaterialCardView?>(R.id.btn_back)?.setOnClickListener { finish() }
-
         // register button (now a MaterialButton in layout)
         findViewById<MaterialButton>(R.id.btn_register).setOnClickListener {
             performRegister()
         }
 
         // 'Already have an account? Login' -> go to LoginActivity
-        findViewById<TextView?>(R.id.tv_already)?.setOnClickListener {
-            startActivity(android.content.Intent(this, LoginActivity::class.java))
-            finish()
+        val tvAlready = findViewById<TextView>(R.id.tv_already)
+        val text = "Already have an account? Login"
+        val spannableString = SpannableString(text)
+        
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                finish()
+            }
+            
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.parseColor("#C86A3F")
+                ds.isUnderlineText = false
+            }
         }
+        
+        val loginStart = text.indexOf("Login")
+        spannableString.setSpan(clickableSpan, loginStart, text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvAlready.text = spannableString
+        tvAlready.movementMethod = LinkMovementMethod.getInstance()
     }
 
     // onClick fallback for XML attribute
