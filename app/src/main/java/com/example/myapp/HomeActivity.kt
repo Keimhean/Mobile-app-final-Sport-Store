@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
         rvBestSellers.layoutManager = GridLayoutManager(this, 2)
         val bestSellers = listOf(
             ProductAdapter.ProductItem(R.drawable.img_product_nike_pegasus, "Nike", "Air Zoom Pegasus", 129.99, 159.99, 4.8, 342, isSale = true, isNew = true),
-            ProductAdapter.ProductItem(R.drawable.img_product_default, "Puma", "Pro Training Shoes", 89.99, null, 4.5, 128, isSale = false, isNew = false),
+            ProductAdapter.ProductItem(R.drawable.puma, "Puma", "Pro Training Shoes", 89.99, null, 4.5, 128, isSale = false, isNew = false),
             ProductAdapter.ProductItem(R.drawable.img_product_default, "Lululemon", "Yoga Mat Premium", 68.0, null, 4.6, 234, isSale = false, isNew = false),
             ProductAdapter.ProductItem(R.drawable.img_product_soccer_cleats, "Adidas", "Soccer Cleats Elite", 149.99, 179.99, 4.7, 267, isSale = true, isNew = false),
             ProductAdapter.ProductItem(R.drawable.img_product_nike_jersey, "Nike", "Basketball Jersey", 79.99, null, 4.7, 189, isSale = false, isNew = true),
