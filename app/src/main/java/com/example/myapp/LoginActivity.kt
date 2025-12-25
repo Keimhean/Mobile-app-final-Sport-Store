@@ -154,6 +154,9 @@ package com.example.myapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.app.Activity
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
@@ -172,6 +175,7 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
     private var isPasswordVisible = false
     private var firebaseAuthHelper: FirebaseAuthHelper? = null
+    private lateinit var googleSignInLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -236,6 +240,28 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // Register ActivityResult launcher for Google Sign-In
+        googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // delegate handling to helper
+                firebaseAuthHelper?.handleGoogleSignInResult(result.data,
+                    onSuccess = { token ->
+                        TokenStore.saveToken(this, token)
+                        Toast.makeText(this, "Google login success", Toast.LENGTH_SHORT).show()
+                        progress.visibility = View.GONE
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    },
+                    onError = { error ->
+                        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                        progress.visibility = View.GONE
+                    }
+                )
+            } else {
+                progress.visibility = View.GONE
+            }
+        }
+
         // Google button
         findViewById<MaterialCardView>(R.id.btn_google).setOnClickListener {
             if (firebaseAuthHelper == null) {
@@ -244,7 +270,7 @@ class LoginActivity : AppCompatActivity() {
             }
             progress.visibility = View.VISIBLE
             val signInIntent = firebaseAuthHelper?.startGoogleSignIn()
-            signInIntent?.let { startActivityForResult(it, FirebaseAuthHelper.RC_GOOGLE_SIGN_IN) }
+            signInIntent?.let { googleSignInLauncher.launch(it) }
         }
 
         // Facebook button
