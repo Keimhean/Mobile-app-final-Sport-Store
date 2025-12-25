@@ -269,14 +269,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="32dp">
+                android:layout_marginTop="32dp"
+                android:paddingBottom="4dp">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_sort_by_size"/>
-<!--                    android:tint="#FF6D00"-->
-<!--                    android:contentDescription="Best sellers icon" />-->
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_flash"
+                    android:tint="#FF6A00"
+                    android:contentDescription="Best sellers icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -284,7 +285,7 @@
                     android:layout_marginStart="8dp"
                     android:text="Best Sellers"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="#111827" />
 
             </LinearLayout>
