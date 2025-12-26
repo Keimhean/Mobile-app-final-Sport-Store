@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    
+    <!-- Circular background -->
+    <path
+        android:fillColor="#1E3A5F"
+        android:pathData="M256,256m-230,0a230,230 0,1 1,460 0a230,230 0,1 1,-460 0"/>
+    
+    <!-- Inner circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M256,256m-200,0a200,200 0,1 1,400 0a200,200 0,1 1,-400 0"/>
+        
+    <!-- Sports illustration placeholder - simplified design -->
+    <path
+        android:fillColor="#FF8C42"
+        android:pathData="M320,180 Q360,200 380,240 Q400,280 380,320 Q360,360 320,380 L256,320 Z"/>
+    
+    <path
+        android:fillColor="#1E3A5F"
+        android:pathData="M180,180 Q140,220 140,280 Q140,340 180,380 Q220,400 256,380 L256,180 Z"/>
+</vector>
