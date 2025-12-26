@@ -12,4 +12,5 @@
     <color name="glass_border">#40FFFFFF</color>
     <color name="glass_shadow">#20000000</color>
     <color name="ic_launcher_background">#5B4FFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>
