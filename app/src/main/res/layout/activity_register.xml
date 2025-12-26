@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/ic_profile"
+            android:src="@drawable/ic_profile_nav"
             android:background="@drawable/bg_avatar_navy"
             android:padding="20dp"
             android:contentDescription="Create account" />
