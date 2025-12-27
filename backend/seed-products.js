@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 // Connect to MongoDB
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://admin:password123@localhost:27017/sports_store?authSource=admin', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://admin:password123@localhost:27017/sports_store?authSource=admin');
     console.log('MongoDB connected');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error.message);

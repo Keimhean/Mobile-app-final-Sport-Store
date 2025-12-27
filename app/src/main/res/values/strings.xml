@@ -51,8 +51,9 @@
     <!-- Facebook SDK -->
     <!-- TODO: Get these from Facebook Developer Console -->
     <!-- See FIREBASE_QUICKFIX.md for complete setup instructions -->
-    <string name="facebook_app_id">YOUR_FACEBOOK_APP_ID</string>
-    <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN</string>
+    <!-- Using dummy values to prevent runtime errors. Configure real values if using Facebook login -->
+    <string name="facebook_app_id">123456789012345</string>
+    <string name="facebook_client_token">1234567890abcdef1234567890abcdef</string>
 
     <!-- Arrays for product selection -->
     <string-array name="sizes">
