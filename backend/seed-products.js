@@ -1,4 +1,3 @@
-/* eslint-disable no-console, no-trailing-spaces */
 require('dotenv').config();
 const mongoose = require('mongoose');
 
