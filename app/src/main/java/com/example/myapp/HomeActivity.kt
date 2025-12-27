@@ -51,12 +51,12 @@ class HomeActivity : AppCompatActivity() {
         val rvCat = findViewById<RecyclerView>(R.id.rv_categories)
         rvCat.layoutManager = GridLayoutManager(this, 2)
         val cats = listOf(
-            CategoryItem("🏃", "Running & Fitness", R.drawable.category_running, "Running"),
-            CategoryItem("⚽", "Football / Soccer", R.drawable.category_football, "Football"),
-            CategoryItem("🏀", "Basketball", R.drawable.category_basketball, "Basketball"),
-            CategoryItem("🎾", "Tennis & Racket Sports", R.drawable.category_tennis, "Tennis"),
-            CategoryItem("💪", "Gym & Training", R.drawable.category_gym, "Gym"),
-            CategoryItem("🚴", "Cycling", R.drawable.category_cycling, "Other")
+            CategoryItem("Running & Fitness", R.drawable.category_running, "Running"),
+            CategoryItem("Football / Soccer", R.drawable.category_football, "Football"),
+            CategoryItem("Basketball", R.drawable.category_basketball, "Basketball"),
+            CategoryItem("Tennis & Racket Sports", R.drawable.category_tennis, "Tennis"),
+            CategoryItem("Gym & Training", R.drawable.category_gym, "Gym"),
+            CategoryItem("Cycling", R.drawable.category_cycling, "Other")
         )
         rvCat.adapter = CategoryAdapter(cats)
 

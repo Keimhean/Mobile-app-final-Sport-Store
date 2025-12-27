@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter(private val items: List<CategoryItem>) : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
-    data class CategoryItem(val emoji: String, val label: String, val imageRes: Int, val category: String)
+    data class CategoryItem(val label: String, val imageRes: Int, val category: String)
 
     class VH(view: View) : RecyclerView.ViewHolder(view) {
-        val emojiView: TextView = view.findViewById(R.id.tv_emoji)
         val labelView: TextView = view.findViewById(R.id.tv_label)
         val imageView: ImageView = view.findViewById(R.id.iv_category_image)
     }
@@ -25,7 +24,6 @@ class CategoryAdapter(private val items: List<CategoryItem>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val it = items[position]
-        holder.emojiView.text = it.emoji
         holder.labelView.text = it.label
         holder.imageView.setImageResource(it.imageRes)
         
