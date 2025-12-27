@@ -40,7 +40,8 @@
         <activity
             android:name=".RegisterActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:exported="true" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".ProductListActivity" />
         <activity android:name=".ProductDetailActivity" />

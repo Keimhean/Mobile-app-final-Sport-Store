@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'Product category is required'],
-    enum: ['Football', 'Basketball', 'Tennis', 'Running', 'Gym', 'Other']
+    enum: ['Football', 'Basketball', 'Tennis', 'Running', 'Gym', 'Cycling', 'Other']
   },
   brand: {
     type: String,
