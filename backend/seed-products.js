@@ -276,6 +276,96 @@ const products = [
     featured: true,
     isActive: true
   }
+  ,
+  // Cycling Products
+  {
+    name: 'Carbon Road Bike',
+    description: 'Lightweight carbon frame road bike for competitive riding',
+    price: 1999.99,
+    category: 'Cycling',
+    brand: 'Trek',
+    imageUrl: 'https://via.placeholder.com/300?text=Road+Bike',
+    stock: 5,
+    sizes: ['S', 'M', 'L'],
+    colors: ['Black', 'Red'],
+    ratings: { average: 4.9, count: 12 },
+    featured: true,
+    isActive: true
+  },
+  {
+    name: 'Cycling Helmet Pro',
+    description: 'Aerodynamic cycling helmet with advanced ventilation and MIPS',
+    price: 129.99,
+    category: 'Cycling',
+    brand: 'Giro',
+    imageUrl: 'https://via.placeholder.com/300?text=Cycling+Helmet',
+    stock: 30,
+    sizes: ['S', 'M', 'L'],
+    colors: ['Matte Black', 'White'],
+    ratings: { average: 4.6, count: 40 },
+    featured: false,
+    isActive: true
+  },
+
+  // Gym & Training Products
+  {
+    name: 'Adjustable Dumbbells Set',
+    description: 'Space-saving adjustable dumbbells with easy weight changes',
+    price: 299.99,
+    category: 'Gym & Training',
+    brand: 'Bowflex',
+    imageUrl: 'https://via.placeholder.com/300?text=Adjustable+Dumbbells',
+    stock: 8,
+    sizes: [],
+    colors: ['Black'],
+    ratings: { average: 4.7, count: 38 },
+    featured: true,
+    isActive: true
+  },
+  {
+    name: 'Premium Yoga Mat',
+    description: 'Non-slip eco-friendly yoga mat with extra cushioning',
+    price: 69.99,
+    category: 'Gym & Training',
+    brand: 'Manduka',
+    imageUrl: 'https://via.placeholder.com/300?text=Yoga+Mat',
+    stock: 45,
+    sizes: [],
+    colors: ['Purple', 'Black', 'Blue'],
+    ratings: { average: 4.5, count: 60 },
+    featured: false,
+    isActive: true
+  },
+
+  // Tennis & Racket Sport Products
+  {
+    name: 'Pro Tennis Racket',
+    description: 'Lightweight tennis racket with excellent control and power',
+    price: 179.99,
+    category: 'Tennis & Racket Sport',
+    brand: 'Wilson',
+    imageUrl: 'https://via.placeholder.com/300?text=Tennis+Racket',
+    stock: 20,
+    sizes: [],
+    colors: ['Black', 'White'],
+    ratings: { average: 4.6, count: 29 },
+    featured: true,
+    isActive: true
+  },
+  {
+    name: 'Tennis Balls (Pack of 3)',
+    description: 'High-bounce pressurized tennis balls for rally play',
+    price: 9.99,
+    category: 'Tennis & Racket Sport',
+    brand: 'Penn',
+    imageUrl: 'https://via.placeholder.com/300?text=Tennis+Balls',
+    stock: 120,
+    sizes: [],
+    colors: ['Yellow'],
+    ratings: { average: 4.4, count: 22 },
+    featured: false,
+    isActive: true
+  }
 ];
 
 const seedDatabase = async () => {
