@@ -12,16 +12,11 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/top_app_bar"
+            style="@style/Widget.Material3.Toolbar"
             android:layout_width="match_parent"
-            android:color="#9E9E9E"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/app_name"
-            android:textColor="#FF6A00"
-            app:menu="@menu/top_app_bar_menu"
-            app:titleTextColor="#FF6A00"
-/>
-            style="@style/Widget.Material3.Toolbar"
-            />
+            app:titleTextColor="#FF6A00" />
 <!--        <com.google.android.material.appbar.MaterialToolbar-->
 <!--            android:id="@+id/top_app_bar"-->
 <!--            android:layout_width="match_parent"-->

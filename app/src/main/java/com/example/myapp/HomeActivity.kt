@@ -3,7 +3,6 @@ package com.example.myapp
 import android.content.Intent
 import android.os.Bundle
 import  android.widget.TextView
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,21 +20,8 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Setup Top App Bar
-        val toolbar = findViewById<MaterialToolbar>(R.id.top_app_bar)
-        toolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_search -> {
-                    // TODO: Implement search functionality
-                    true
-                }
-                R.id.action_cart -> {
-                    startActivity(Intent(this, CartActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-        }
+        // Top App Bar shows title only; no actions
+        findViewById<MaterialToolbar>(R.id.top_app_bar)
 
         // Setup Bottom Navigation
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
