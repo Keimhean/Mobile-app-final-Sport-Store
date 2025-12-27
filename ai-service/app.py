@@ -117,7 +117,32 @@ def health():
 def content_recommendations(product_id):
     """Get content-based recommendations for a product"""
     try:
-        top_n = int(request.args.get('limit', 5))
+        # Validate input
+        if not product_id or not isinstance(product_id, str) or len(product_id.strip()) == 0:
+            return jsonify({'success': False, 'error': 'Invalid product_id'}), 400
+        
+        product_id = product_id.strip()
+        
+        # Validate limit parameter
+        try:
+            top_n = int(request.args.get('limit', 5))
+            if top_n < 1 or top_n > 50:
+                top_n = 5  # Default to 5 if out of range
+        except ValueError:
+            top_n = 5
+        
+        # Check if product exists
+        if product_id not in product_embeddings:
+            logger.warning(f"Product not found: {product_id}")
+            return jsonify({
+                'success': True,
+                'productId': product_id,
+                'recommendations': [],
+                'type': 'content-based',
+                'count': 0,
+                'message': 'Product not yet in system'
+            })
+        
         recommendations = engine.content_based_recommendations(product_id, top_n)
         
         return jsonify({
@@ -129,13 +154,26 @@ def content_recommendations(product_id):
         })
     except Exception as e:
         logger.error(f"Content recommendation error: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': 'Failed to generate recommendations'}), 500
 
 @app.route('/api/v1/ai/recommendations/user/<user_id>', methods=['GET'])
 def user_recommendations(user_id):
     """Get personalized recommendations for a user"""
     try:
-        top_n = int(request.args.get('limit', 5))
+        # Validate input
+        if not user_id or not isinstance(user_id, str) or len(user_id.strip()) == 0:
+            return jsonify({'success': False, 'error': 'Invalid user_id'}), 400
+        
+        user_id = user_id.strip()
+        
+        # Validate limit parameter
+        try:
+            top_n = int(request.args.get('limit', 5))
+            if top_n < 1 or top_n > 50:
+                top_n = 5  # Default to 5 if out of range
+        except ValueError:
+            top_n = 5
+        
         recommendations = engine.collaborative_filtering(user_id, top_n)
         
         return jsonify({
@@ -147,19 +185,36 @@ def user_recommendations(user_id):
         })
     except Exception as e:
         logger.error(f"User recommendation error: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': 'Failed to generate recommendations'}), 500
 
 @app.route('/api/v1/ai/train', methods=['POST'])
 def train_interaction():
     """Record user interaction for learning"""
     try:
         data = request.json
+        
+        # Validate request body
+        if not data:
+            return jsonify({'success': False, 'error': 'Request body is required'}), 400
+        
         user_id = data.get('userId')
         product_id = data.get('productId')
-        interaction_type = data.get('type', 'view')  # view, purchase, cart
+        interaction_type = data.get('type', 'view')
         
-        if not user_id or not product_id:
-            return jsonify({'success': False, 'error': 'Missing userId or productId'}), 400
+        # Validate required fields
+        if not user_id or not isinstance(user_id, str) or len(user_id.strip()) == 0:
+            return jsonify({'success': False, 'error': 'Invalid or missing userId'}), 400
+        
+        if not product_id or not isinstance(product_id, str) or len(product_id.strip()) == 0:
+            return jsonify({'success': False, 'error': 'Invalid or missing productId'}), 400
+        
+        user_id = user_id.strip()
+        product_id = product_id.strip()
+        
+        # Validate interaction type
+        valid_types = ['view', 'purchase', 'cart', 'wishlist']
+        if interaction_type not in valid_types:
+            interaction_type = 'view'
         
         # Store interaction
         if user_id not in user_interactions:
@@ -180,35 +235,59 @@ def train_interaction():
             'success': True,
             'message': 'Interaction recorded',
             'userId': user_id,
-            'productId': product_id
+            'productId': product_id,
+            'type': interaction_type
         })
     except Exception as e:
         logger.error(f"Training error: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': 'Failed to record interaction'}), 500
 
 @app.route('/api/v1/ai/embeddings', methods=['POST'])
 def update_embeddings():
     """Update product embeddings"""
     try:
         data = request.json
+        
+        # Validate request body
+        if not data:
+            return jsonify({'success': False, 'error': 'Request body is required'}), 400
+        
         products = data.get('products', [])
         
-        for product in products:
-            product_id = product.get('_id') or product.get('id')
-            if product_id:
-                embedding = engine.generate_product_embedding(product)
-                product_embeddings[product_id] = embedding
+        # Validate products is a list
+        if not isinstance(products, list):
+            return jsonify({'success': False, 'error': 'products must be a list'}), 400
         
-        logger.info(f"Updated embeddings for {len(products)} products")
+        if len(products) == 0:
+            return jsonify({
+                'success': True,
+                'message': 'No products to update',
+                'totalEmbeddings': len(product_embeddings)
+            })
+        
+        update_count = 0
+        for product in products:
+            try:
+                product_id = product.get('_id') or product.get('id')
+                if product_id and isinstance(product_id, str):
+                    embedding = engine.generate_product_embedding(product)
+                    product_embeddings[product_id] = embedding
+                    update_count += 1
+            except Exception as product_error:
+                logger.warning(f"Failed to process product {product.get('_id')}: {str(product_error)}")
+                continue
+        
+        logger.info(f"Updated embeddings for {update_count}/{len(products)} products")
         
         return jsonify({
             'success': True,
-            'message': f'Updated {len(products)} product embeddings',
-            'totalEmbeddings': len(product_embeddings)
+            'message': f'Updated {update_count} product embeddings',
+            'totalEmbeddings': len(product_embeddings),
+            'processedCount': update_count
         })
     except Exception as e:
         logger.error(f"Embedding update error: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': 'Failed to update embeddings'}), 500
 
 @app.route('/api/v1/ai/stats', methods=['GET'])
 def get_stats():
