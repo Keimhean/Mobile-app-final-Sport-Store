@@ -21,4 +21,8 @@ object ApiClient {
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
+
+    val orderService: OrderService by lazy {
+        retrofit.create(OrderService::class.java)
+    }
 }
