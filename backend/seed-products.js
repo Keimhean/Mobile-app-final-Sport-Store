@@ -289,7 +289,7 @@ const seedDatabase = async () => {
     // Insert new products
     const result = await Product.insertMany(products);
     console.log(`✅ Successfully added ${result.length} products!`);
-    
+
     console.log('\n📊 Products by Category:');
     const categories = await Product.aggregate([
       { $group: { _id: '$category', count: { $sum: 1 } } }

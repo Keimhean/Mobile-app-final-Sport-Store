@@ -57,7 +57,7 @@ const createUsers = async () => {
     for (const userData of testUsers) {
       // Check if user already exists
       const existingUser = await User.findOne({ email: userData.email });
-      
+
       if (existingUser) {
         console.log(`⚠️  User ${userData.email} already exists`);
         continue;
