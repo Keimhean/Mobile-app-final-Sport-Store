@@ -27,9 +27,5 @@ class CategoryActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.rv_categories)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = CategoryAdapter(categories)
-        findViewById<MaterialCardView>(R.id.btn_back).setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
     }
 }
