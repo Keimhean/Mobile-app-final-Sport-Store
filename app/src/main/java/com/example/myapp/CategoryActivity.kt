@@ -19,7 +19,7 @@ class CategoryActivity : AppCompatActivity() {
             CategoryAdapter.CategoryItem("Tennis & Racket Sports", R.drawable.category_tennis, "Tennis"),
             CategoryAdapter.CategoryItem("Gym & Training", R.drawable.category_gym, "Gym"),
     //            CategoryAdapter.CategoryItem("Swimming & Water Sports", R.drawable.img_category_swimming, "Swimming"),
-            CategoryAdapter.CategoryItem("Cycling", R.drawable.category_cycling, "Other"),
+            CategoryAdapter.CategoryItem("Cycling", R.drawable.category_cycling, "Cycling"),
     //            CategoryAdapter.CategoryItem("Cricket / Baseball", R.drawable.img_category_cricket, "Cricket"),
     //            CategoryAdapter.CategoryItem("Golf", R.drawable.img_category_golf, "Golf")
         )
