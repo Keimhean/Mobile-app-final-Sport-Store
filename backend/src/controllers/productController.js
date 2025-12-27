@@ -8,7 +8,7 @@ exports.getProducts = async (req, res) => {
     const { category, search, minPrice, maxPrice, featured, sort, page = 1, limit = 10 } = req.query;
 
     // Build query
-    let query = { isActive: true };
+    const query = { isActive: true };
 
     if (category) query.category = category;
     if (featured) query.featured = featured === 'true';

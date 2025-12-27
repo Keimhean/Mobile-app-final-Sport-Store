@@ -1,4 +1,5 @@
-const errorHandler = (err, req, res, next) => {
+/* eslint-disable no-console */
+const errorHandler = (err, req, res, _next) => {
   let error = { ...err };
   error.message = err.message;
 

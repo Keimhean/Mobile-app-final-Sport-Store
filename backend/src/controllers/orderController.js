@@ -5,7 +5,7 @@ const Order = require('../models/Order');
 // @access  Private
 exports.getOrders = async (req, res) => {
   try {
-    let query = {};
+    const query = {};
 
     // If not admin, only show user's orders
     if (req.user.role !== 'admin') {
@@ -58,7 +58,7 @@ exports.createOrder = async (req, res) => {
     };
 
     const order = await Order.create(orderData);
-    
+
     res.status(201).json({ success: true, data: order });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });

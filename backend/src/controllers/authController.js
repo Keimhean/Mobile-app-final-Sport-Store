@@ -132,9 +132,9 @@ exports.socialLogin = async (req, res) => {
 
     // Validate input
     if (!email || !name || !provider || !firebaseUid) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Please provide email, name, provider, and firebaseUid' 
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide email, name, provider, and firebaseUid'
       });
     }
 
