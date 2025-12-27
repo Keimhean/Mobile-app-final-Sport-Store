@@ -57,17 +57,47 @@
                             android:orientation="horizontal"
                             android:gravity="center_vertical">
 
-                            <!-- Avatar -->
-                            <TextView
-                                android:id="@+id/tv_avatar"
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:background="@drawable/bg_avatar"
-                                android:gravity="center"
-                                android:text="JD"
-                                android:textColor="#FFFFFF"
-                                android:textSize="24sp"
-                                android:textStyle="bold" />
+                            <!-- Avatar Container -->
+                            <FrameLayout
+                                android:layout_width="80dp"
+                                android:layout_height="80dp">
+
+                                <!-- Profile Photo -->
+                                <ImageView
+                                    android:id="@+id/iv_profile_photo"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:scaleType="centerCrop"
+                                    android:background="@drawable/bg_avatar"
+                                    android:visibility="gone"
+                                    android:contentDescription="Profile Photo" />
+
+                                <!-- Initials Avatar (fallback) -->
+                                <TextView
+                                    android:id="@+id/tv_avatar"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:background="@drawable/bg_avatar"
+                                    android:gravity="center"
+                                    android:text="JD"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="28sp"
+                                    android:textStyle="bold" />
+
+                                <!-- Camera Icon Overlay -->
+                                <ImageView
+                                    android:id="@+id/iv_camera_icon"
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_margin="4dp"
+                                    android:background="@drawable/bg_camera_icon"
+                                    android:padding="6dp"
+                                    android:src="@android:drawable/ic_menu_camera"
+                                    android:contentDescription="Change Photo"
+                                    android:tint="#FFFFFF" />
+
+                            </FrameLayout>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -389,8 +419,86 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp">
+                    android:orientation="vertical">
+
+                    <!-- Profile Photo Header -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="24dp"
+                        android:background="#F8F9FA">
+
+                        <FrameLayout
+                            android:id="@+id/settings_avatar_container"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true">
+
+                            <!-- Settings Profile Photo -->
+                            <ImageView
+                                android:id="@+id/iv_settings_profile_photo"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:scaleType="centerCrop"
+                                android:background="@drawable/bg_avatar"
+                                android:visibility="gone"
+                                android:contentDescription="Profile Photo" />
+
+                            <!-- Settings Initials Avatar -->
+                            <TextView
+                                android:id="@+id/tv_settings_avatar"
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:background="@drawable/bg_avatar"
+                                android:gravity="center"
+                                android:text="JD"
+                                android:textColor="#FFFFFF"
+                                android:textSize="22sp"
+                                android:textStyle="bold" />
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/settings_avatar_container"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_settings_username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="John Doe"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#111827" />
+
+                            <TextView
+                                android:id="@+id/tv_settings_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="john.doe@email.com"
+                                android:textSize="14sp"
+                                android:textColor="#6B7280" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E5E7EB" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -721,6 +829,8 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Log Out Card -->
@@ -731,7 +841,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="100dp"
                 app:cardCornerRadius="24dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
@@ -741,24 +851,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp"
+                    android:padding="24dp"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:src="@android:drawable/ic_menu_revert"
-                        android:tint="#DC2626"
-                        android:contentDescription="Log Out" />
+                        android:tint="#EF4444"
+                        android:contentDescription="Log Out Icon" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="20dp"
                         android:text="Log Out"
-                        android:textSize="16sp"
-                        android:textColor="#DC2626"
+                        android:textSize="18sp"
+                        android:textColor="#EF4444"
                         android:textStyle="bold" />
 
                 </LinearLayout>
